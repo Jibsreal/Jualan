@@ -9,7 +9,7 @@
     :root{
       --bg: #ffffff;
       --muted:#6b7280;
-      --accent:#FFB84D; /* mango accent */
+      --accent:#FFB84D;
       --accent-700:#ff9f1a;
       --card:#ffffff;
       --shadow:0 8px 30px rgba(16,24,40,0.08);
@@ -25,7 +25,6 @@
       min-height:100vh;
     }
 
-    /* Header */
     header{
       display:flex;align-items:center;gap:16px;padding:18px 24px;max-width:900px;margin:20px auto 0; width:100%;
     }
@@ -35,11 +34,9 @@
     .brand h1{margin:0;font-size:18px;font-weight:700;letter-spacing:0.2px}
     .brand p{margin:3px 0 0;color:var(--muted);font-size:13px}
 
-    /* Main content */
     main{flex:1;display:flex;align-items:center;justify-content:center;padding:36px 16px}
     .wrap{max-width:920px;width:100%;display:flex;align-items:center;justify-content:center}
 
-    /* Product card */
     .card{
       width:100%;max-width:520px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;padding:0;display:grid;grid-template-columns:1fr;align-items:stretch
     }
@@ -94,7 +91,7 @@
     <div class="wrap">
       <article class="card" role="article" aria-label="Moon Smoothie product card">
         <div class="media">
-          <img src="mango-smoothie.jpg" alt="Moon Smoothie">
+          <img id="product-image" src="1.jpg" alt="Moon Smoothie">
         </div>
         <div class="content">
           <div class="kicker">Produk</div>
@@ -132,14 +129,23 @@
 
   <script>
     const PRICE = 15000;
-    const phone = '6281919000164'; // international format
+    const phone = '6281919000164';
 
     const qtyInput = document.getElementById('qty');
     const varianSelect = document.getElementById('varian');
+    const productImage = document.getElementById('product-image');
+
     document.getElementById('inc').addEventListener('click', ()=>{ qtyInput.value = parseInt(qtyInput.value || '1') + 1; });
     document.getElementById('dec').addEventListener('click', ()=>{ qtyInput.value = Math.max(1, (parseInt(qtyInput.value || '1') - 1)); });
 
-    document.getElementById('clear').addEventListener('click', ()=>{ qtyInput.value = 1; varianSelect.selectedIndex = 0; });
+    document.getElementById('clear').addEventListener('click', ()=>{ qtyInput.value = 1; varianSelect.selectedIndex = 0; productImage.src = '1.jpg'; });
+
+    varianSelect.addEventListener('change', ()=>{
+      const value = varianSelect.value;
+      if(value === 'Banana Mango') productImage.src = '1.jpg';
+      else if(value === 'Strawberry Banana') productImage.src = '2.jpg';
+      else if(value === 'Kiwi Banana') productImage.src = '3.jpg';
+    });
 
     function formatIDR(n){
       return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
