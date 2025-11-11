@@ -3,14 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Pesan Moon Smoothie segar langsung via WhatsApp. Varian Banana Mango, Strawberry Banana, Kiwi Banana. Fresh handmade daily!" />
-  <!-- SEO & Social Media Meta Tags -->
+  <meta name="description" content="Pesan smoothie segar langsung dari 3SmoothMoon. Multiple produk dengan varian pilihan!" />
   <meta property="og:title" content="3SmoothMoon — Pesan Smoothie Segar" />
-  <meta property="og:description" content="Smoothie segar handmade langsung dari Moon Smoothie. Pesan sekarang via WhatsApp!" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>3SmoothMoon — Pesan Smoothie Segar via WhatsApp</title>
+  <meta property="og:description" content="Smoothie handmade langsung dari Moon Smoothie. Pesan sekarang via WhatsApp!" />
+  <title>3SmoothMoon — Pesan Smoothie Segar</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -31,8 +27,6 @@
       background: linear-gradient(180deg, #fff 0%, #fff8ef 100%);
       color: #111;
       -webkit-font-smoothing: antialiased;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
     }
 
@@ -72,26 +66,23 @@
       font-size: 13px;
     }
 
-    /* Main Content */
+    /* Main */
     main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 36px 16px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .wrap {
-      max-width: 920px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
     }
 
     /* Product Card */
     .card {
-      width: 100%;
-      max-width: 520px;
       background: var(--card);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -101,15 +92,11 @@
     .card:hover {
       box-shadow: 0 12px 40px rgba(16,24,40,0.12);
     }
-
-    /* Product Media */
     .media {
-      height: 320px;
+      height: 260px;
       background: #f7f3ef;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
     }
     .media img {
       width: 100%;
@@ -118,105 +105,83 @@
       display: block;
       transition: transform 0.3s ease;
     }
-    .media:hover img {
+    .card:hover .media img {
       transform: scale(1.05);
     }
-
-    /* Content */
     .content {
       padding: 24px;
     }
-    .kicker {
-      font-size: 12px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.9px;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .title {
-      font-size: 24px;
-      margin: 0 0 8px;
+    .product-name {
+      font-size: 20px;
+      margin: 0 0 6px;
       font-weight: 700;
     }
-    .desc {
+    .product-desc {
       color: var(--muted);
-      margin: 0 0 20px;
+      margin: 0 0 16px;
+      font-size: 14px;
       line-height: 1.5;
     }
 
-    /* Variant Selection */
+    /* Variants */
     .variant-label {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: block;
+      color: var(--muted);
     }
-    .variant-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      margin-bottom: 20px;
+    .variant-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
     }
-    .variant-option {
-      position: relative;
+    .variant-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: var(--transition);
       cursor: pointer;
     }
-    .variant-option input[type="checkbox"] {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .variant-card {
-      padding: 12px;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      text-align: center;
-      transition: var(--transition);
-      background: #fff;
-    }
-    .variant-option input[type="checkbox"]:checked + .variant-card {
+    .variant-item:hover {
+      background: #f9fafb;
       border-color: var(--accent);
-      background: #fff8ef;
-      transform: scale(1.02);
     }
-    .variant-card:hover {
-      border-color: var(--accent);
+    .variant-item input[type="checkbox"] {
+      margin-right: 10px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .variant-name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    /* Price & Controls */
+    /* Controls */
     .price-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 20px;
-      padding: 16px;
-      background: #f9fafb;
-      border-radius: var(--radius);
+      padding: 12px 0;
+      border-top: 1px solid #f3f4f6;
     }
     .price {
       font-weight: 700;
-      font-size: 20px;
+      font-size: 18px;
       color: var(--accent-700);
-    }
-    .total-price {
-      font-weight: 600;
-      color: var(--accent);
-      font-size: 16px;
-    }
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
     .qty {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border-radius: 10px;
-      padding: 6px 8px;
+      border-radius: 8px;
+      padding: 4px 8px;
       border: 1px solid #eee;
       background: #fff;
     }
@@ -233,65 +198,80 @@
       color: var(--accent-700);
     }
     .qty input {
-      width: 56px;
+      width: 48px;
       border: 0;
       text-align: center;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15px;
+    }
+    .subtotal {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 4px;
     }
 
-    /* Action Buttons */
-    .action-buttons {
-      display: flex;
-      gap: 12px;
-      align-items: center;
+    /* Summary & Checkout */
+    .checkout-summary {
+      position: sticky;
+      bottom: 20px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 -4px 20px rgba(16,24,40,0.12);
+      padding: 24px;
+      max-width: 520px;
+      margin: 0 auto;
+      border: 1px solid #f3f4f6;
     }
-    .btn {
-      flex: 1;
+    .summary-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .summary-items {
+      max-height: 180px;
+      overflow-y: auto;
+      margin-bottom: 16px;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+    .summary-item strong {
+      font-weight: 600;
+    }
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 2px solid #e5e7eb;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-700);
+    }
+    .checkout-btn {
+      width: 100%;
       background: var(--accent);
       border: 0;
-      padding: 14px 20px;
+      padding: 16px;
       border-radius: 10px;
       color: #111;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
       box-shadow: 0 6px 18px rgba(255,184,77,0.18);
-      position: relative;
+      margin-top: 16px;
     }
-    .btn:hover {
+    .checkout-btn:hover {
       background: var(--accent-700);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255,184,77,0.25);
     }
-    .btn:disabled {
+    .checkout-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-    }
-    .btn.secondary {
-      background: transparent;
-      border: 1px solid #e5e7eb;
-      color: var(--muted);
-      box-shadow: none;
-    }
-    .btn.secondary:hover {
-      background: #f9fafb;
-      border-color: var(--muted);
-    }
-
-    /* Loading Spinner */
-    .spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(0,0,0,.2);
-      border-top-color: #000;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin-right: 8px;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
 
     /* Footer */
@@ -305,22 +285,33 @@
     }
 
     /* Responsive */
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     @media (max-width: 540px) {
-      header { padding: 16px; margin-top: 10px; }
+      header { padding: 16px; }
       .brand h1 { font-size: 16px; }
-      .media { height: 260px; }
-      .title { font-size: 20px; }
-      .content { padding: 20px; }
-      .variant-grid { grid-template-columns: 1fr; }
-      .action-buttons { flex-direction: column; }
+      .media { height: 220px; }
+      .checkout-summary {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        border-radius: 0;
+        border-top-left-radius: var(--radius);
+        border-top-right-radius: var(--radius);
+        padding: 16px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo-thumb" aria-hidden="true">
-      <!-- Ganti dengan logo brand Anda -->
-      <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=100&h=100&fit=crop" alt="Logo Moon Smoothie">
+      <img src="abhika.jpg" alt="Logo 3SmoothMoon">
     </div>
     <div class="brand">
       <h1>3SmoothMoon</h1>
@@ -329,283 +320,253 @@
   </header>
 
   <main>
-    <div class="wrap">
-      <article class="card" role="article" aria-label="Moon Smoothie product card">
-        <div class="media">
-          <img id="product-image" 
-               src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop" 
-               alt="Smoothie preview">
-        </div>
-        <div class="content">
-          <div class="kicker">Produk</div>
-          <h2 class="title">Smoothie Segar</h2>
-          <p class="desc">Smoothie handmade dari buah pilihan berkualitas. Pilih varian favoritmu untuk sensasi menyegarkan setiap hari.</p>
+    <div class="products-grid" id="products-grid">
+      <!-- Products will be dynamically generated -->
+    </div>
 
-          <!-- Variant Selection - MOBILE FRIENDLY -->
-          <label class="variant-label">Pilih Varian (bisa lebih dari satu):</label>
-          <div class="variant-grid" id="variant-grid">
-            <label class="variant-option">
-              <input type="checkbox" value="Banana Mango" data-image="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop">
-              <div class="variant-card">🥭 Banana Mango</div>
-            </label>
-            <label class="variant-option">
-              <input type="checkbox" value="Strawberry Banana" data-image="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop&auto=format">
-              <div class="variant-card">🍓 Strawberry Banana</div>
-            </label>
-            <label class="variant-option">
-              <input type="checkbox" value="Kiwi Banana" data-image="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop&auto=format">
-              <div class="variant-card">🥝 Kiwi Banana</div>
-            </label>
-          </div>
-
-          <!-- Price & Quantity -->
-          <div class="price-row">
-            <div>
-              <div class="price">Rp 15.000 / item</div>
-              <div class="total-price" id="total-price">Total: Rp 0</div>
-            </div>
-            <div class="controls">
-              <div class="qty" aria-label="Kontrol jumlah">
-                <button id="dec" aria-label="kurangi jumlah">−</button>
-                <input id="qty" type="number" min="1" value="1" aria-label="jumlah item" />
-                <button id="inc" aria-label="tambah jumlah">+</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="action-buttons">
-            <button class="btn" id="checkout">
-              <span id="checkout-text">Pesan via WhatsApp</span>
-            </button>
-            <button class="btn secondary" id="clear">Reset Pesanan</button>
-          </div>
-        </div>
-      </article>
+    <!-- Checkout Summary -->
+    <div class="checkout-summary" id="checkout-summary" style="display: none;">
+      <div class="summary-title">Ringkasan Pesanan</div>
+      <div class="summary-items" id="summary-items"></div>
+      <div class="summary-total">
+        <span>Total Keseluruhan:</span>
+        <span id="grand-total">Rp 0</span>
+      </div>
+      <button class="checkout-btn" id="checkout-btn">
+        Pesan via WhatsApp
+      </button>
     </div>
   </main>
 
   <footer>
-    © 2025 3SmoothMoon — Brand: Moon Smoothie • Made with ❤️
+    © 2025 3SmoothMoon — Brand: Moon Smoothie • Varian: Banana Mango, Strawberry Banana, Kiwi Banana
   </footer>
 
   <script>
-    // ===== CONFIGURATION =====
-    const CONFIG = {
-      PRICE: 15000,
-      PHONE: '6281919000164', // TODO: Ganti dengan nomor WhatsApp bisnis Anda
-      DEFAULT_IMAGE: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop'
-    };
+    // ===== DATA PRODUK =====
+    const PRODUCTS = [
+      {
+        id: 'smoothie-1',
+        name: 'Smoothie Mangga & Pisang',
+        desc: 'Kombinasi manis mangga Alphonso dan pisang sunpride. Perfect energy boost!',
+        price: 15000,
+        image: 'abhika.jpg', // GANTI dengan gambar produk Anda
+        variants: [
+          { name: 'Banana Mango', image: '1.jpg' },
+          { name: 'Strawberry Banana', image: '2.jpg' },
+          { name: 'Kiwi Banana', image: '3.jpg' }
+        ]
+      },
+      {
+        id: 'smoothie-2',
+        name: 'Smoothie Berry Mix',
+        desc: 'Perpaduan segar berbagai buah berry pilihan. Kaya antioksidan!',
+        price: 18000,
+        image: 'abhika.jpg', // GANTI dengan gambar produk Anda
+        variants: [
+          { name: 'Blueberry Mix', image: '1.jpg' },
+          { name: 'Raspberry Blend', image: '2.jpg' },
+          { name: 'Acai Bowl', image: '3.jpg' }
+        ]
+      },
+      {
+        id: 'smoothie-3',
+        name: 'Smoothie Tropical',
+        desc: 'Rasakan sensasi tropis dengan kelapa muda, nanas, dan papaya.',
+        price: 16000,
+        image: 'abhika.jpg', // GANTI dengan gambar produk Anda
+        variants: [
+          { name: 'Coconut Pineapple', image: '1.jpg' },
+          { name: 'Papaya Delight', image: '2.jpg' },
+          { name: 'Tropical Fusion', image: '3.jpg' }
+        ]
+      }
+    ];
 
-    // ===== DOM ELEMENTS =====
-    const elements = {
-      qtyInput: document.getElementById('qty'),
-      totalPrice: document.getElementById('total-price'),
-      productImage: document.getElementById('product-image'),
-      checkoutBtn: document.getElementById('checkout'),
-      checkoutText: document.getElementById('checkout-text'),
-      clearBtn: document.getElementById('clear'),
-      decBtn: document.getElementById('dec'),
-      incBtn: document.getElementById('inc'),
-      variantGrid: document.getElementById('variant-grid')
-    };
-
-    // ===== FORMATTER =====
+    // ===== UTILITY FUNCTIONS =====
     const formatIDR = (n) => `Rp ${n.toLocaleString('id-ID')}`;
 
-    // ===== GET SELECTED VARIANTS =====
-    const getSelectedVariants = () => 
-      Array.from(elements.variantGrid.querySelectorAll('input[type="checkbox"]:checked'))
-        .map(input => input.value);
+    // ===== DOM ELEMENTS =====
+    const productsGrid = document.getElementById('products-grid');
+    const summarySection = document.getElementById('checkout-summary');
+    const summaryItems = document.getElementById('summary-items');
+    const grandTotal = document.getElementById('grand-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
 
-    // ===== UPDATE PRODUCT IMAGE =====
-    const updateProductImage = () => {
-      const selected = getSelectedVariants();
-      const firstVariant = elements.variantGrid.querySelector('input[type="checkbox"]:checked');
+    // ===== GENERATE PRODUCTS =====
+    function renderProducts() {
+      PRODUCTS.forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.dataset.productId = product.id;
+        
+        const variantHTML = product.variants.map(variant => `
+          <label class="variant-item">
+            <input type="checkbox" 
+                   data-product-id="${product.id}" 
+                   data-variant="${variant.name}" 
+                   data-price="${product.price}">
+            <span class="variant-name">${variant.name}</span>
+          </label>
+        `).join('');
+
+        card.innerHTML = `
+          <div class="media">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+          <div class="content">
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-desc">${product.desc}</p>
+            
+            <div class="variant-label">Pilih Varian:</div>
+            <div class="variant-list">${variantHTML}</div>
+            
+            <div class="price-row">
+              <div class="price">${formatIDR(product.price)} / item</div>
+              <div class="qty">
+                <button class="dec-btn" data-product-id="${product.id}">−</button>
+                <input type="number" min="1" value="1" class="qty-input" data-product-id="${product.id}">
+                <button class="inc-btn" data-product-id="${product.id}">+</button>
+              </div>
+            </div>
+            <div class="subtotal" id="subtotal-${product.id}">Subtotal: Rp 0</div>
+          </div>
+        `;
+        
+        productsGrid.appendChild(card);
+      });
+
+      attachEventListeners();
+    }
+
+    // ===== EVENT LISTENERS =====
+    function attachEventListeners() {
+      // Quantity buttons
+      document.querySelectorAll('.inc-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const productId = btn.dataset.productId;
+          const input = document.querySelector(`.qty-input[data-product-id="${productId}"]`);
+          input.value = parseInt(input.value) + 1;
+          updateSubtotal(productId);
+          updateSummary();
+        });
+      });
+
+      document.querySelectorAll('.dec-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const productId = btn.dataset.productId;
+          const input = document.querySelector(`.qty-input[data-product-id="${productId}"]`);
+          input.value = Math.max(1, parseInt(input.value) - 1);
+          updateSubtotal(productId);
+          updateSummary();
+        });
+      });
+
+      // Quantity input validation
+      document.querySelectorAll('.qty-input').forEach(input => {
+        input.addEventListener('input', () => {
+          const productId = input.dataset.productId;
+          if (parseInt(input.value) < 1 || isNaN(input.value)) input.value = 1;
+          updateSubtotal(productId);
+          updateSummary();
+        });
+      });
+
+      // Variant checkboxes
+      document.querySelectorAll('.variant-item input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          updateSummary();
+        });
+      });
+    }
+
+    // ===== UPDATE SUBTOTAL PER PRODUCT =====
+    function updateSubtotal(productId) {
+      const qty = parseInt(document.querySelector(`.qty-input[data-product-id="${productId}"]`).value);
+      const checkedVariants = document.querySelectorAll(`.variant-item input[data-product-id="${productId}"]:checked`);
+      const price = parseInt(checkedVariants[0]?.dataset.price || 0);
+      const subtotal = qty * price * checkedVariants.length;
       
-      if (firstVariant) {
-        elements.productImage.src = firstVariant.dataset.image;
-        elements.productImage.alt = `Smoothie ${firstVariant.value}`;
+      document.getElementById(`subtotal-${productId}`).textContent = `Subtotal: ${formatIDR(subtotal)}`;
+    }
+
+    // ===== UPDATE SUMMARY =====
+    function updateSummary() {
+      const items = [];
+      let total = 0;
+
+      PRODUCTS.forEach(product => {
+        const qty = parseInt(document.querySelector(`.qty-input[data-product-id="${product.id}"]`).value);
+        const checkedVariants = document.querySelectorAll(`.variant-item input[data-product-id="${product.id}"]:checked`);
+        
+        checkedVariants.forEach(variant => {
+          const variantName = variant.dataset.variant;
+          const itemTotal = product.price * qty;
+          total += itemTotal;
+          
+          items.push({
+            text: `${product.name} - ${variantName} <strong>x${qty}</strong>`,
+            price: formatIDR(itemTotal)
+          });
+        });
+      });
+
+      // Render summary
+      if (items.length > 0) {
+        summarySection.style.display = 'block';
+        summaryItems.innerHTML = items.map(item => `
+          <div class="summary-item">
+            <span>${item.text}</span>
+            <span>${item.price}</span>
+          </div>
+        `).join('');
+        grandTotal.textContent = formatIDR(total);
       } else {
-        elements.productImage.src = CONFIG.DEFAULT_IMAGE;
-        elements.productImage.alt = 'Smoothie preview';
+        summarySection.style.display = 'none';
       }
-    };
+    }
 
-    // ===== UPDATE TOTAL PRICE =====
-    const updateTotalPrice = () => {
-      const qty = Math.max(1, parseInt(elements.qtyInput.value) || 1);
-      const variantCount = getSelectedVariants().length;
-      const total = CONFIG.PRICE * qty * variantCount;
-      
-      elements.totalPrice.textContent = `Total: ${formatIDR(total)}`;
-    };
+    // ===== CHECKOUT =====
+    checkoutBtn.addEventListener('click', () => {
+      const orders = [];
+      let grandTotalAmount = 0;
 
-    // ===== QUANTITY CONTROLS =====
-    elements.incBtn.addEventListener('click', () => {
-      elements.qtyInput.value = parseInt(elements.qtyInput.value || '1') + 1;
-      updateTotalPrice();
-    });
+      PRODUCTS.forEach(product => {
+        const qty = parseInt(document.querySelector(`.qty-input[data-product-id="${product.id}"]`).value);
+        const checkedVariants = document.querySelectorAll(`.variant-item input[data-product-id="${product.id}"]:checked`);
+        
+        checkedVariants.forEach(variant => {
+          const variantName = variant.dataset.variant;
+          const itemTotal = product.price * qty;
+          grandTotalAmount += itemTotal;
+          orders.push(`${product.name} - ${variantName} (x${qty}) = ${formatIDR(itemTotal)}`);
+        });
+      });
 
-    elements.decBtn.addEventListener('click', () => {
-      elements.qtyInput.value = Math.max(1, (parseInt(elements.qtyInput.value || '1') - 1));
-      updateTotalPrice();
-    });
-
-    // Sanitize manual input
-    elements.qtyInput.addEventListener('input', (e) => {
-      let val = parseInt(e.target.value);
-      if (isNaN(val) || val < 1) e.target.value = 1;
-      updateTotalPrice();
-    });
-
-    // ===== VARIANT SELECTION =====
-    elements.variantGrid.addEventListener('change', () => {
-      updateProductImage();
-      updateTotalPrice();
-    });
-
-    // ===== CLEAR BUTTON =====
-    elements.clearBtn.addEventListener('click', () => {
-      // Reset quantity
-      elements.qtyInput.value = 1;
-      
-      // Uncheck all variants
-      elements.variantGrid.querySelectorAll('input[type="checkbox"]')
-        .forEach(input => input.checked = false);
-      
-      // Reset image and total
-      updateProductImage();
-      updateTotalPrice();
-      
-      // Visual feedback
-      elements.clearBtn.textContent = '✅ Direset!';
-      setTimeout(() => { elements.clearBtn.textContent = 'Reset Pesanan'; }, 1200);
-    });
-
-    // ===== CHECKOUT BUTTON =====
-    elements.checkoutBtn.addEventListener('click', async () => {
-      const qty = Math.max(1, parseInt(elements.qtyInput.value) || 1);
-      const selectedVariants = getSelectedVariants();
-      const total = CONFIG.PRICE * qty * selectedVariants.length;
-
-      // Validation
-      if (selectedVariants.length === 0) {
-        alert('⚠️ Silakan pilih minimal satu varian rasa!');
+      if (orders.length === 0) {
+        alert('⚠️ Silakan pilih minimal satu varian produk!');
         return;
       }
 
-      // Show loading state
-      elements.checkoutBtn.disabled = true;
-      elements.checkoutText.innerHTML = '<span class="spinner"></span> Mengarahkan ke WhatsApp...';
-
-      // Build message
-      const variantList = selectedVariants.map(v => `- ${v} (x${qty})`).join('\n');
       const message = `Halo 3SmoothMoon! 🥤
 
 Saya ingin memesan:
-${variantList}
+${orders.map(item => `• ${item}`).join('\n')}
 
-Total item: ${qty * selectedVariants.length} item
-Total harga: ${formatIDR(total)}
+*Total Keseluruhan: ${formatIDR(grandTotalAmount)}*
 
 Silakan konfirmasi ketersediaan dan estimasi waktu siapnya. Terima kasih!`;
 
-      const encoded = encodeURIComponent(message);
-      const url = `https://wa.me/${CONFIG.PHONE}?text=${encoded}`;
-
-      // Simulate delay for better UX
-      await new Promise(r => setTimeout(r, 800));
+      // GANTI nomor WhatsApp berikut dengan nomor bisnis Anda
+      const phone = '6281919000164';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       
-      // Open WhatsApp
       window.open(url, '_blank');
-
-      // Reset button state
-      elements.checkoutBtn.disabled = false;
-      elements.checkoutText.textContent = 'Pesan via WhatsApp';
     });
 
     // ===== INITIALIZE =====
-    updateTotalPrice();
-
-    // Performance optimization: Preload product images
-    ['https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop&auto=format'].forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  </script>
-</body>
-              </html>          <p class="desc">Smoothie segar dari buah pilihan. Pilih varian rasa favoritmu atau lebih dari satu untuk sensasi menyegarkan setiap hari.</p>
-
-          <label for="varian">Pilih Varian (bisa lebih dari satu):</label>
-          <select id="varian" class="varian" multiple size="3">
-            <option value="Banana Mango">Banana Mango</option>
-            <option value="Strawberry Banana">Strawberry Banana</option>
-            <option value="Kiwi Banana">Kiwi Banana</option>
-          </select>
-
-          <div class="price-row">
-            <div class="price">Rp 15.000 / item</div>
-            <div class="controls">
-              <div class="qty" aria-label="Kontrol jumlah">
-                <button id="dec" aria-label="kurangi">−</button>
-                <input id="qty" type="number" min="1" value="1" aria-label="jumlah" />
-                <button id="inc" aria-label="tambah">+</button>
-              </div>
-            </div>
-          </div>
-
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-            <button class="btn" id="checkout">Pesan via WhatsApp</button>
-            <button class="btn secondary" id="clear">Hapus</button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </main>
-
-  <footer>© 2025 3SmoothMango — Brand: Moon Smoothie • Varian: Banana Mango, Strawberry Banana, Kiwi Banana</footer>
-
-  <script>
-    const PRICE = 15000;
-    const phone = '6281919000164';
-
-    const qtyInput = document.getElementById('qty');
-    const varianSelect = document.getElementById('varian');
-    const productImage = document.getElementById('product-image');
-
-    document.getElementById('inc').addEventListener('click', ()=>{ qtyInput.value = parseInt(qtyInput.value || '1') + 1; });
-    document.getElementById('dec').addEventListener('click', ()=>{ qtyInput.value = Math.max(1, (parseInt(qtyInput.value || '1') - 1)); });
-
-    document.getElementById('clear').addEventListener('click', ()=>{ qtyInput.value = 1; varianSelect.selectedIndex = -1; productImage.src = '1.jpg'; });
-
-    varianSelect.addEventListener('change', ()=>{
-      const selected = Array.from(varianSelect.selectedOptions).map(o => o.value);
-      if(selected.length === 1){
-        if(selected[0] === 'Banana Mango') productImage.src = '1.jpg';
-        else if(selected[0] === 'Strawberry Banana') productImage.src = '2.jpg';
-        else if(selected[0] === 'Kiwi Banana') productImage.src = '3.jpg';
-      } else {
-        productImage.src = 'abhika.jpg'; // default image when multiple selected
-      }
-    });
-
-    function formatIDR(n){
-      return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    document.getElementById('checkout').addEventListener('click', ()=>{
-      const qty = Math.max(1, parseInt(qtyInput.value || '1'));
-      const selectedVariants = Array.from(varianSelect.selectedOptions).map(o => o.value);
-      const total = PRICE * qty * selectedVariants.length;
-
-      let listText = selectedVariants.map(v => `- ${v} Smoothie`).join('%0A');
-
-      let message = `Halo 3SmoothMoon!%0A%0ASaya ingin memesan:%0A${listText}%0A%0AJumlah: ${qty}x per varian%0ATotal: ${encodeURIComponent(formatIDR(total))}%0A%0ASilakan konfirmasi ketersediaan dan estimasi waktu siapnya. Terima kasih!`;
-
-      const url = `https://wa.me/${phone}?text=${message}`;
-      window.open(url, '_blank');
-    });
+    renderProducts();
+    updateSummary();
   </script>
 </body>
 </html>
