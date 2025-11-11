@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> MoonMango — Manggo Smoothie</title>
+  <title>Abhika MoonMango — Moon Smoothie</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -43,8 +43,9 @@
     .card{
       width:100%;max-width:520px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;padding:0;display:grid;grid-template-columns:1fr;align-items:stretch
     }
-    .media{height:320px;background:#f7f3ef;display:grid;place-items:center}
-    .media img{width:100%;height:100%;object-fit:cover;display:block}
+    .media{height:320px;background:#f7f3ef;display:grid;place-items:center;overflow:hidden}
+    .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
+    .media img:hover{transform:scale(1.05)}
     .content{padding:20px 22px}
     .kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.9px;margin-bottom:8px}
     .title{font-size:22px;margin:0 0 6px}
@@ -59,6 +60,10 @@
     }
     .qty button{background:transparent;border:0;padding:6px 8px;font-size:16px;cursor:pointer}
     .qty input{width:56px;border:0;text-align:center;font-weight:600}
+
+    select.varian{
+      width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-bottom:14px;font-size:14px;color:#333
+    }
 
     .cta{display:flex;gap:12px;align-items:center}
     .btn{
@@ -80,21 +85,28 @@
       <img src="abhika.jpg" alt="Logo Abhika MoonMango">
     </div>
     <div class="brand">
-      <h1>MoonMango</h1>
-      <p>Fresh handmade mango smoothie — satu varian</p>
+      <h1>Abhika MoonMango</h1>
+      <p>Brand: <strong>Moon Smoothie</strong> — Fresh handmade smoothies</p>
     </div>
   </header>
 
   <main>
     <div class="wrap">
-      <article class="card" role="article" aria-label="Manggo Smoothie product card">
+      <article class="card" role="article" aria-label="Moon Smoothie product card">
         <div class="media">
-          <img src="Barang.jpg" alt="Manggo Smoothie">
+          <img src="mango-smoothie.jpg" alt="Moon Smoothie">
         </div>
         <div class="content">
-          <div class="kicker">Minuman</div>
-          <h2 class="title">Manggo Smoothie</h2>
-          <p class="desc">Smoothie mangga segar, dibuat dari mangga matang — manis, lembut, dan menyegarkan. Disajikan dingin.</p>
+          <div class="kicker">Produk</div>
+          <h2 class="title">Smoothie</h2>
+          <p class="desc">Smoothie segar dari buah pilihan. Pilih varian rasa favoritmu untuk sensasi menyegarkan setiap hari.</p>
+
+          <label for="varian">Varian:</label>
+          <select id="varian" class="varian">
+            <option value="Banana Mango">Banana Mango</option>
+            <option value="Strawberry Banana">Strawberry Banana</option>
+            <option value="Kiwi Banana">Kiwi Banana</option>
+          </select>
 
           <div class="price-row">
             <div class="price">Rp 15.000</div>
@@ -116,17 +128,18 @@
     </div>
   </main>
 
-  <footer>© 2025 MoonMango — Minimalis modern • Manggo Smoothie</footer>
+  <footer>© 2025 Abhika MoonMango — Brand: Moon Smoothie • Varian: Banana Mango, Strawberry Banana, Kiwi Banana</footer>
 
   <script>
     const PRICE = 15000;
     const phone = '6281919000164'; // international format
 
     const qtyInput = document.getElementById('qty');
+    const varianSelect = document.getElementById('varian');
     document.getElementById('inc').addEventListener('click', ()=>{ qtyInput.value = parseInt(qtyInput.value || '1') + 1; });
     document.getElementById('dec').addEventListener('click', ()=>{ qtyInput.value = Math.max(1, (parseInt(qtyInput.value || '1') - 1)); });
 
-    document.getElementById('clear').addEventListener('click', ()=>{ qtyInput.value = 1; });
+    document.getElementById('clear').addEventListener('click', ()=>{ qtyInput.value = 1; varianSelect.selectedIndex = 0; });
 
     function formatIDR(n){
       return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -135,9 +148,9 @@
     document.getElementById('checkout').addEventListener('click', ()=>{
       const qty = Math.max(1, parseInt(qtyInput.value || '1'));
       const total = PRICE * qty;
+      const varian = varianSelect.value;
 
-      // full message in Indonesian, URL-encoded manually for clarity
-      let message = `Halo Abhika MoonMango!%0A%0ASaya ingin memesan:%0A- Manggo Smoothie x${qty} = ${encodeURIComponent(formatIDR(total))}%0A%0ATotal: ${encodeURIComponent(formatIDR(total))}%0A%0ASilakan konfirmasi ketersediaan dan estimasi waktu siapnya. Terima kasih!`;
+      let message = `Halo Abhika MoonMango!%0A%0ASaya ingin memesan:%0A- ${varian} Smoothie x${qty} = ${encodeURIComponent(formatIDR(total))}%0A%0ATotal: ${encodeURIComponent(formatIDR(total))}%0A%0ASilakan konfirmasi ketersediaan dan estimasi waktu siapnya. Terima kasih!`;
 
       const url = `https://wa.me/${phone}?text=${message}`;
       window.open(url, '_blank');
