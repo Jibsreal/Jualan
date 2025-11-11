@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Toko — Simple Shop</title>
+  <title>Abhika MoonMango</title>
   <style>
-    :root{--bg:#f6f8fb;--card:#ffffff;--accent:#0b75ef;--muted:#6b7280}
+    :root{--bg:#f6f8fb;--card:#ffffff;--accent:#ffb703;--muted:#6b7280}
     *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
     body{margin:0;background:var(--bg);color:#111}
-    header{background:linear-gradient(90deg,#0b75ef 0%,#5db8ff 100%);color:#fff;padding:20px}
-    .container{max-width:1100px;margin:24px auto;padding:0 16px}
+    header{background:linear-gradient(90deg,#ffb703 0%,#ffd166 100%);color:#fff;padding:20px}
+    .container{max-width:800px;margin:24px auto;padding:0 16px}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{width:56px;height:56px;border-radius:10px;background:#fff;color:var(--accent);display:grid;place-items:center;font-weight:700}
     h1{margin:0;font-size:20px}
     .layout{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(11,117,239,0.06)}
+    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(255,183,3,0.1)}
     .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-    .product{border:1px solid #e6eefc;padding:12px;border-radius:8px;display:flex;flex-direction:column;gap:10px}
+    .product{border:1px solid #ffe9b3;padding:12px;border-radius:8px;display:flex;flex-direction:column;gap:10px}
     .product img{width:100%;height:140px;object-fit:cover;border-radius:6px}
     .product h3{margin:0;font-size:16px}
     .price{font-weight:700;color:var(--accent)}
     button{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
-    button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(11,117,239,0.12)}
+    button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,183,3,0.3)}
     .cart-list{display:flex;flex-direction:column;gap:10px}
     .cart-item{display:flex;gap:10px;align-items:center}
     .qty{width:48px}
@@ -34,10 +34,10 @@
   <header>
     <div class="container">
       <div class="brand">
-        <div class="logo">TK</div>
+        <div class="logo">AM</div>
         <div>
-          <h1>Toko — Abhika MoonMango</h1>
-          <div class="muted">Small demo shop with products and a buy list (cart)</div>
+          <h1>Abhika MoonMango</h1>
+          <div class="muted">Fresh handmade mango smoothies</div>
         </div>
       </div>
     </div>
@@ -47,17 +47,17 @@
     <div class="layout">
       <section class="card">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <h2 style="margin:0;font-size:18px">Products</h2>
-          <div class="muted">Click "Add" to push to your Buy List</div>
+          <h2 style="margin:0;font-size:18px">Produk</h2>
+          <div class="muted">Klik "Tambah" untuk masuk ke daftar beli</div>
         </div>
 
         <div id="products" class="products"></div>
       </section>
 
       <aside class="card">
-        <h2 style="margin-top:0">Buy List</h2>
+        <h2 style="margin-top:0">Daftar Beli</h2>
         <div id="cart" class="cart-list">
-          <div class="muted">Your cart is empty — add items to get started.</div>
+          <div class="muted">Keranjang masih kosong — tambahkan smoothie untuk mulai.</div>
         </div>
 
         <div style="margin-top:12px;display:flex;gap:8px;align-items:center;justify-content:space-between">
@@ -67,28 +67,23 @@
           </div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <button id="checkout">Checkout</button>
-            <button id="clear" class="ghost">Clear</button>
+            <button id="clear" class="ghost">Hapus</button>
           </div>
         </div>
       </aside>
     </div>
 
     <footer>
-      Built for demo — edit products in the script. LocalStorage remembers your buy list.
+      © 2025 Abhika MoonMango — Mango Smoothie Lovers Only 🍹
     </footer>
   </main>
 
   <script>
-    // Sample products — replace or extend this array.
     const PRODUCTS = [
-      {id: 'p1', name: 'Kopi Luwak (250g)', price: 75000, img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=60'},
-      {id: 'p2', name: 'Batik Shirt (M)', price: 150000, img: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60'},
-      {id: 'p3', name: 'Handmade Tote Bag', price: 85000, img: 'https://images.unsplash.com/photo-1520975918986-5c5b0f1c9c7b?auto=format&fit=crop&w=800&q=60'},
-      {id: 'p4', name: 'Spice Set (Garam Masala)', price: 45000, img: 'https://images.unsplash.com/photo-1542444459-db8d9f07f6b6?auto=format&fit=crop&w=800&q=60'}
+      {id: 'm1', name: 'Manggo Smoothie', price: 15000, img: 'https://images.unsplash.com/photo-1604908177225-d2c32b7c9c88?auto=format&fit=crop&w=800&q=60'}
     ];
 
-    // Cart is stored as {productId: qty}
-    let cart = JSON.parse(localStorage.getItem('toko_cart') || '{}');
+    let cart = JSON.parse(localStorage.getItem('moonmango_cart') || '{}');
 
     function formatIDR(v){
       return 'Rp ' + v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -106,11 +101,8 @@
             <h3>${p.name}</h3>
             <div class="price">${formatIDR(p.price)}</div>
           </div>
-          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between;">
-            <div class="muted">ID: ${p.id}</div>
-            <div>
-              <button onclick="addToCart('${p.id}')">Add</button>
-            </div>
+          <div style="display:flex;justify-content:flex-end">
+            <button onclick="addToCart('${p.id}')">Tambah</button>
           </div>
         `;
         container.appendChild(el);
@@ -118,7 +110,7 @@
     }
 
     function saveCart(){
-      localStorage.setItem('toko_cart', JSON.stringify(cart));
+      localStorage.setItem('moonmango_cart', JSON.stringify(cart));
       renderCart();
     }
 
@@ -143,7 +135,7 @@
       el.innerHTML = '';
       const keys = Object.keys(cart);
       if(keys.length === 0){
-        el.innerHTML = '<div class="muted">Your cart is empty — add items to get started.</div>';
+        el.innerHTML = '<div class="muted">Keranjang masih kosong — tambahkan smoothie untuk mulai.</div>';
         document.getElementById('total').textContent = formatIDR(0);
         return;
       }
@@ -157,13 +149,13 @@
         item.innerHTML = `
           <div style="flex:1">
             <div style="font-weight:700">${p.name}</div>
-            <div class="muted">${formatIDR(p.price)} · ID: ${p.id}</div>
+            <div class="muted">${formatIDR(p.price)}</div>
           </div>
           <div style="display:flex;align-items:center;gap:6px">
             <button class="ghost" onclick="changeQty('${id}', -1)">-</button>
             <input class="qty" type="number" min="1" value="${qty}" onchange="setQty('${id}', this.value)" />
             <button class="ghost" onclick="changeQty('${id}', 1)">+</button>
-            <button class="ghost" onclick="removeFromCart('${id}')">Remove</button>
+            <button class="ghost" onclick="removeFromCart('${id}')">Hapus</button>
           </div>
         `;
         el.appendChild(item);
@@ -179,24 +171,29 @@
     }
 
     document.getElementById('clear').addEventListener('click', ()=>{
-      if(confirm('Clear all items from your buy list?')){ cart = {}; saveCart(); }
+      if(confirm('Hapus semua item dari daftar beli?')){ cart = {}; saveCart(); }
     });
 
     document.getElementById('checkout').addEventListener('click', ()=>{
       const keys = Object.keys(cart);
-      if(keys.length === 0){ alert('Your buy list is empty. Add items first.'); return; }
-      // For demo, checkout simply shows a summary and clears cart.
-      const summary = keys.map(k=>{
-        const p = PRODUCTS.find(x=>x.id===k);
-        return `${p.name} x ${cart[k]} = ${formatIDR(p.price * cart[k])}`;
-      }).join('\n');
-      if(confirm('Confirm purchase?\n\n' + summary)){
-        alert('Thanks for your purchase — this demo does not process payments.');
-        cart = {}; saveCart();
-      }
+      if(keys.length === 0){ alert('Keranjang kosong. Tambahkan smoothie terlebih dahulu.'); return; }
+
+      let total = 0;
+      let pesan = 'Halo Abhika MoonMango!%0A%0ASaya ingin memesan:%0A';
+
+      keys.forEach(id => {
+        const p = PRODUCTS.find(x => x.id === id);
+        const qty = cart[id];
+        const subtotal = p.price * qty;
+        total += subtotal;
+        pesan += `- ${p.name} x${qty} = ${formatIDR(subtotal)}%0A`;
+      });
+
+      pesan += `%0ATotal: ${formatIDR(total)}%0A%0AMohon konfirmasi ketersediaan dan estimasi waktu siapnya. Terima kasih! 🍹`;
+      const url = `https://wa.me/6281919000164?text=${pesan}`;
+      window.open(url, '_blank');
     });
 
-    // Initial render
     renderProducts();
     renderCart();
   </script>
