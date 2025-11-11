@@ -1,108 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abhika MoonMango</title>
   <style>
-    :root{--bg:#f6f8fb;--card:#ffffff;--accent:#ffb703;--muted:#6b7280}
-    *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
-    body{margin:0;background:var(--bg);color:#111}
-    header{background:linear-gradient(90deg,#ffb703 0%,#ffd166 100%);color:#fff;padding:20px}
-    .container{max-width:800px;margin:24px auto;padding:0 16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:56px;height:56px;border-radius:10px;background:#fff;color:var(--accent);display:grid;place-items:center;font-weight:700}
-    h1{margin:0;font-size:20px}
-    .layout{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(255,183,3,0.1)}
-    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-    .product{border:1px solid #ffe9b3;padding:12px;border-radius:8px;display:flex;flex-direction:column;gap:10px}
-    .product img{width:100%;height:140px;object-fit:cover;border-radius:6px}
-    .product h3{margin:0;font-size:16px}
-    .price{font-weight:700;color:var(--accent)}
-    button{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
-    button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,183,3,0.3)}
-    .cart-list{display:flex;flex-direction:column;gap:10px}
-    .cart-item{display:flex;gap:10px;align-items:center}
-    .qty{width:48px}
-    .muted{color:var(--muted);font-size:13px}
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-    @media (max-width:880px){.layout{grid-template-columns:1fr}}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fffaf5;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background-color: #ffe0b2;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #5a3e1b;
+    }
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1rem;
+      background: white;
+      text-align: center;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #ffb74d;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #ffa726;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <div class="brand">
-        <div class="logo"><img src="Abhika.jpg" alt="Abhika MoonMango Logo"></div>
-<div>
-        <div>
-          <h1>Abhika MoonMango</h1>
-          <div class="muted">Fresh handmade mango smoothies</div>
-        </div>
-      </div>
-    </div>
+    <img src="Abhika.jpg" alt="Logo Abhika MoonMango" />
+    <h1>Abhika MoonMango</h1>
   </header>
 
-  <main class="container">
-    <div class="layout">
-      <section class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <h2 style="margin:0;font-size:18px">Produk</h2>
-          <div class="muted">Klik "Tambah" untuk masuk ke daftar beli</div>
-        </div>
-
-        <div id="products" class="products"></div>
-      </section>
-
-      <aside class="card">
-        <h2 style="margin-top:0">Daftar Beli</h2>
-        <div id="cart" class="cart-list">
-          <div class="muted">Keranjang masih kosong — tambahkan smoothie untuk mulai.</div>
-        </div>
-
-        <div style="margin-top:12px;display:flex;gap:8px;align-items:center;justify-content:space-between">
-          <div>
-            <div class="muted">Total:</div>
-            <div id="total" style="font-size:18px;font-weight:700">Rp 0</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <button id="checkout">Checkout</button>
-            <button id="clear" class="ghost">Hapus</button>
-          </div>
-        </div>
-      </aside>
+  <main>
+    <div class="product">
+      <img src="mango-smoothie.jpg" alt="Manggo Smoothie" />
+      <h2>Manggo Smoothie</h2>
+      <p>Rp 15.000</p>
+      <button onclick="addToCart()">Tambah ke Keranjang</button>
     </div>
 
-    <footer>
-      © 2025 Abhika MoonMango — Mango Smoothie Lovers Only 🍹
-    </footer>
+    <div id="cart" style="margin-top:2rem; display:none;">
+      <h3>Keranjang Belanja</h3>
+      <ul id="cart-items"></ul>
+      <p id="total"></p>
+      <button onclick="checkout()">Checkout via WhatsApp</button>
+    </div>
   </main>
 
   <script>
-    const PRODUCTS = [
-      {id: 'm1', name: 'Manggo Smoothie', price: 15000, img: 'https://images.unsplash.com/photo-1604908177225-d2c32b7c9c88?auto=format&fit=crop&w=800&q=60'}
-    ];
+    let cart = [];
 
-    let cart = JSON.parse(localStorage.getItem('moonmango_cart') || '{}');
-
-    function formatIDR(v){
-      return 'Rp ' + v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    function addToCart() {
+      const item = { name: 'Manggo Smoothie', price: 15000 };
+      cart.push(item);
+      displayCart();
     }
 
-    function renderProducts(){
-      const container = document.getElementById('products');
-      container.innerHTML = '';
-      PRODUCTS.forEach(p => {
-        const el = document.createElement('div');
-        el.className = 'product';
-        el.innerHTML = `
-          <img src="${p.img}" alt="${p.name}" loading="lazy" />
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <h3>${p.name}</h3>
-            <div class="price">${formatIDR(p.price)}</div>
-          </div>
-          <div style="display:flex;justify-content:flex-end">
+    function displayCart() {
+      const cartDiv = document.getElementById('cart');
+      const cartItems = document.getElementById('cart-items');
+      const totalElement = document.getElementById('total');
+
+      cartDiv.style.display = 'block';
+      cartItems.innerHTML = '';
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - Rp ${item.price.toLocaleString('id-ID')}`;
+        cartItems.appendChild(li);
+      });
+
+      totalElement.textContent = `Total: Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) return alert('Keranjang masih kosong!');
+      let message = 'Halo Abhika MoonMango!%0ASaya ingin memesan:%0A';
+      let total = 0;
+
+      cart.forEach((item) => {
+        message += `- ${item.name} (Rp ${item.price.toLocaleString('id-ID')})%0A`;
+        total += item.price;
+      });
+
+      message += `%0ATotal: Rp ${total.toLocaleString('id-ID')}`;
+      message += `%0ATerima kasih!`;
+
+      const waUrl = `https://wa.me/6281919000164?text=${message}`;
+      window.open(waUrl, '_blank');
+    }
+  </script>
+</body>
+</html>          <div style="display:flex;justify-content:flex-end">
             <button onclick="addToCart('${p.id}')">Tambah</button>
           </div>
         `;
