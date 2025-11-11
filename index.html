@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Pesan smoothie segar langsung dari 3SmoothMoon. Multiple produk dengan varian pilihan!" />
+  <meta name="description" content="Pesan smoothie segar langsung dari 3SmoothMoon. Pilih varian favoritmu dengan jumlah terpisah!" />
   <meta property="og:title" content="3SmoothMoon — Pesan Smoothie Segar" />
   <meta property="og:description" content="Smoothie handmade langsung dari Moon Smoothie. Pesan sekarang via WhatsApp!" />
   <title>3SmoothMoon — Pesan Smoothie Segar</title>
@@ -69,16 +69,22 @@
     /* Main */
     main {
       padding: 36px 16px;
-      max-width: 1100px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
-    /* Products Grid */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 24px;
-      margin-bottom: 32px;
+    .page-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .page-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .page-title p {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     /* Product Card */
@@ -88,6 +94,7 @@
       box-shadow: var(--shadow);
       overflow: hidden;
       transition: var(--transition);
+      margin-bottom: 24px;
     }
     .card:hover {
       box-shadow: 0 12px 40px rgba(16,24,40,0.12);
@@ -112,106 +119,90 @@
       padding: 24px;
     }
     .product-name {
-      font-size: 20px;
-      margin: 0 0 6px;
+      font-size: 22px;
+      margin: 0 0 8px;
       font-weight: 700;
     }
     .product-desc {
       color: var(--muted);
-      margin: 0 0 16px;
+      margin: 0 0 20px;
       font-size: 14px;
       line-height: 1.5;
     }
 
-    /* Variants */
+    /* Variant Rows */
     .variant-label {
       font-size: 13px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       display: block;
       color: var(--muted);
     }
-    .variant-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    .variant-item {
-      display: flex;
+    .variant-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 12px;
       align-items: center;
-      padding: 8px 12px;
+      padding: 12px;
       border-radius: 8px;
-      border: 2px solid transparent;
+      margin-bottom: 8px;
       transition: var(--transition);
-      cursor: pointer;
     }
-    .variant-item:hover {
+    .variant-row:hover {
       background: #f9fafb;
-      border-color: var(--accent);
     }
-    .variant-item input[type="checkbox"] {
-      margin-right: 10px;
-      width: 16px;
-      height: 16px;
+    .variant-row.selected {
+      background: #fff8ef;
+      border: 2px solid var(--accent);
+    }
+    .variant-checkbox {
+      width: 18px;
+      height: 18px;
       cursor: pointer;
     }
     .variant-name {
-      flex: 1;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
     }
-
-    /* Controls */
-    .price-row {
+    .variant-qty {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 0;
-      border-top: 1px solid #f3f4f6;
+      gap: 6px;
     }
-    .price {
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--accent-700);
-    }
-    .qty {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 8px;
-      padding: 4px 8px;
-      border: 1px solid #eee;
-      background: #fff;
-    }
-    .qty button {
+    .variant-qty button {
       background: transparent;
-      border: 0;
-      padding: 6px 12px;
-      font-size: 18px;
+      border: 1px solid #e5e7eb;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
-      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .qty button:hover {
-      color: var(--accent-700);
+    .variant-qty button:hover {
+      border-color: var(--accent);
+      background: var(--accent);
     }
-    .qty input {
-      width: 48px;
-      border: 0;
+    .variant-qty input {
+      width: 36px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
       text-align: center;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
+      padding: 4px;
     }
-    .subtotal {
-      font-size: 12px;
-      color: var(--muted);
+    .variant-subtotal {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-700);
+      min-width: 80px;
       text-align: right;
-      margin-top: 4px;
     }
 
-    /* Summary & Checkout */
+    /* Summary */
     .checkout-summary {
       position: sticky;
       bottom: 20px;
@@ -219,9 +210,8 @@
       border-radius: var(--radius);
       box-shadow: 0 -4px 20px rgba(16,24,40,0.12);
       padding: 24px;
-      max-width: 520px;
-      margin: 0 auto;
       border: 1px solid #f3f4f6;
+      transition: var(--transition);
     }
     .summary-title {
       font-size: 18px;
@@ -230,7 +220,7 @@
       text-align: center;
     }
     .summary-items {
-      max-height: 180px;
+      max-height: 200px;
       overflow-y: auto;
       margin-bottom: 16px;
     }
@@ -239,6 +229,10 @@
       justify-content: space-between;
       padding: 6px 0;
       font-size: 14px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .summary-item:last-child {
+      border-bottom: none;
     }
     .summary-item strong {
       font-weight: 600;
@@ -251,6 +245,7 @@
       font-size: 20px;
       font-weight: 700;
       color: var(--accent-700);
+      margin-bottom: 16px;
     }
     .checkout-btn {
       width: 100%;
@@ -263,7 +258,6 @@
       cursor: pointer;
       transition: var(--transition);
       box-shadow: 0 6px 18px rgba(255,184,77,0.18);
-      margin-top: 16px;
     }
     .checkout-btn:hover {
       background: var(--accent-700);
@@ -285,15 +279,24 @@
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-    }
     @media (max-width: 540px) {
       header { padding: 16px; }
       .brand h1 { font-size: 16px; }
-      .media { height: 220px; }
+      .product-name { font-size: 20px; }
+      .variant-row {
+        grid-template-columns: auto 1fr;
+        gap: 8px;
+      }
+      .variant-qty {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 8px;
+      }
+      .variant-subtotal {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 4px;
+      }
       .checkout-summary {
         position: fixed;
         bottom: 0;
@@ -320,20 +323,34 @@
   </header>
 
   <main>
-    <div class="products-grid" id="products-grid">
-      <!-- Products will be dynamically generated -->
+    <div class="page-title">
+      <h2>Pesan Smoothie Segar</h2>
+      <p>Pilih varian dan jumlah yang kamu inginkan</p>
     </div>
 
-    <!-- Checkout Summary -->
+    <article class="card" id="smoothie-product">
+      <div class="media">
+        <!-- GANTI dengan gambar produk utama Anda -->
+        <img id="main-product-image" src="abhika.jpg" alt="Smoothie Segar">
+      </div>
+      <div class="content">
+        <h3 class="product-name">Smoothie Premium</h3>
+        <p class="product-desc">Smoothie handmade dari buah-buahan pilihan berkualitas terbaik. Segar, sehat, dan nikmat setiap tegukan!</p>
+
+        <div class="variant-label">Pilih Varian & Jumlah:</div>
+        <div id="variants-container"></div>
+      </div>
+    </article>
+
     <div class="checkout-summary" id="checkout-summary" style="display: none;">
-      <div class="summary-title">Ringkasan Pesanan</div>
+      <div class="summary-title">🛒 Ringkasan Pesanan</div>
       <div class="summary-items" id="summary-items"></div>
       <div class="summary-total">
         <span>Total Keseluruhan:</span>
         <span id="grand-total">Rp 0</span>
       </div>
       <button class="checkout-btn" id="checkout-btn">
-        Pesan via WhatsApp
+        💬 Pesan via WhatsApp
       </button>
     </div>
   </main>
@@ -343,175 +360,139 @@
   </footer>
 
   <script>
-    // ===== DATA PRODUK =====
-    const PRODUCTS = [
-      {
-        id: 'smoothie-1',
-        name: 'Smoothie Mangga & Pisang',
-        desc: 'Kombinasi manis mangga Alphonso dan pisang sunpride. Perfect energy boost!',
-        price: 15000,
-        image: 'abhika.jpg', // GANTI dengan gambar produk Anda
-        variants: [
-          { name: 'Banana Mango', image: '1.jpg' },
-          { name: 'Strawberry Banana', image: '2.jpg' },
-          { name: 'Kiwi Banana', image: '3.jpg' }
-        ]
-      },
-      {
-        id: 'smoothie-2',
-        name: 'Smoothie Berry Mix',
-        desc: 'Perpaduan segar berbagai buah berry pilihan. Kaya antioksidan!',
-        price: 18000,
-        image: 'abhika.jpg', // GANTI dengan gambar produk Anda
-        variants: [
-          { name: 'Blueberry Mix', image: '1.jpg' },
-          { name: 'Raspberry Blend', image: '2.jpg' },
-          { name: 'Acai Bowl', image: '3.jpg' }
-        ]
-      },
-      {
-        id: 'smoothie-3',
-        name: 'Smoothie Tropical',
-        desc: 'Rasakan sensasi tropis dengan kelapa muda, nanas, dan papaya.',
-        price: 16000,
-        image: 'abhika.jpg', // GANTI dengan gambar produk Anda
-        variants: [
-          { name: 'Coconut Pineapple', image: '1.jpg' },
-          { name: 'Papaya Delight', image: '2.jpg' },
-          { name: 'Tropical Fusion', image: '3.jpg' }
-        ]
-      }
-    ];
+    // ===== CONFIGURATION =====
+    const CONFIG = {
+      PHONE: '6281919000164', // GANTI dengan nomor WhatsApp bisnis Anda
+      PRICE: 15000,
+      DEFAULT_IMAGE: 'abhika.jpg'
+    };
 
-    // ===== UTILITY FUNCTIONS =====
-    const formatIDR = (n) => `Rp ${n.toLocaleString('id-ID')}`;
+    const PRODUCT_DATA = {
+      id: 'smoothie-1',
+      name: 'Smoothie Premium',
+      variants: [
+        { name: 'Banana Mango', image: 'abhika.jpg' },
+        { name: 'Strawberry Banana', image: 'abhika.jpg' },
+        { name: 'Kiwi Banana', image: 'abhika.jpg' }
+      ]
+    };
 
-    // ===== DOM ELEMENTS =====
-    const productsGrid = document.getElementById('products-grid');
+    // ===== RENDER VARIANTS =====
+    const variantsContainer = document.getElementById('variants-container');
     const summarySection = document.getElementById('checkout-summary');
     const summaryItems = document.getElementById('summary-items');
     const grandTotal = document.getElementById('grand-total');
     const checkoutBtn = document.getElementById('checkout-btn');
 
-    // ===== GENERATE PRODUCTS =====
-    function renderProducts() {
-      PRODUCTS.forEach(product => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.dataset.productId = product.id;
+    function renderVariants() {
+      PRODUCT_DATA.variants.forEach((variant, index) => {
+        const row = document.createElement('div');
+        row.className = 'variant-row';
+        row.dataset.variant = variant.name;
         
-        const variantHTML = product.variants.map(variant => `
-          <label class="variant-item">
-            <input type="checkbox" 
-                   data-product-id="${product.id}" 
-                   data-variant="${variant.name}" 
-                   data-price="${product.price}">
-            <span class="variant-name">${variant.name}</span>
-          </label>
-        `).join('');
-
-        card.innerHTML = `
-          <div class="media">
-            <img src="${product.image}" alt="${product.name}">
+        row.innerHTML = `
+          <input type="checkbox" class="variant-checkbox" id="var-${index}" data-variant="${variant.name}">
+          <label for="var-${index}" class="variant-name">${variant.name}</label>
+          <div class="variant-qty">
+            <button class="qty-btn dec" data-variant="${variant.name}">−</button>
+            <input type="number" class="qty-input" data-variant="${variant.name}" value="1" min="1" disabled>
+            <button class="qty-btn inc" data-variant="${variant.name}">+</button>
           </div>
-          <div class="content">
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-desc">${product.desc}</p>
-            
-            <div class="variant-label">Pilih Varian:</div>
-            <div class="variant-list">${variantHTML}</div>
-            
-            <div class="price-row">
-              <div class="price">${formatIDR(product.price)} / item</div>
-              <div class="qty">
-                <button class="dec-btn" data-product-id="${product.id}">−</button>
-                <input type="number" min="1" value="1" class="qty-input" data-product-id="${product.id}">
-                <button class="inc-btn" data-product-id="${product.id}">+</button>
-              </div>
-            </div>
-            <div class="subtotal" id="subtotal-${product.id}">Subtotal: Rp 0</div>
-          </div>
+          <div class="variant-subtotal" data-variant="${variant.name}">Rp 0</div>
         `;
         
-        productsGrid.appendChild(card);
+        variantsContainer.appendChild(row);
       });
 
-      attachEventListeners();
+      attachVariantListeners();
     }
 
-    // ===== EVENT LISTENERS =====
-    function attachEventListeners() {
-      // Quantity buttons
-      document.querySelectorAll('.inc-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const productId = btn.dataset.productId;
-          const input = document.querySelector(`.qty-input[data-product-id="${productId}"]`);
-          input.value = parseInt(input.value) + 1;
-          updateSubtotal(productId);
+    function attachVariantListeners() {
+      // Checkbox toggle
+      document.querySelectorAll('.variant-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+          const variant = e.target.dataset.variant;
+          const row = document.querySelector(`.variant-row[data-variant="${variant}"]`);
+          const qtyInput = document.querySelector(`.qty-input[data-variant="${variant}"]`);
+          
+          if (e.target.checked) {
+            row.classList.add('selected');
+            qtyInput.disabled = false;
+          } else {
+            row.classList.remove('selected');
+            qtyInput.disabled = true;
+          }
+          
+          updateSubtotal(variant);
           updateSummary();
         });
       });
 
-      document.querySelectorAll('.dec-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const productId = btn.dataset.productId;
-          const input = document.querySelector(`.qty-input[data-product-id="${productId}"]`);
-          input.value = Math.max(1, parseInt(input.value) - 1);
-          updateSubtotal(productId);
+      // Quantity buttons
+      document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const variant = e.target.dataset.variant;
+          const input = document.querySelector(`.qty-input[data-variant="${variant}"]`);
+          const isChecked = document.querySelector(`#variants-container .variant-checkbox[data-variant="${variant}"]`).checked;
+          
+          if (!isChecked) return; // Disable if not checked
+          
+          if (e.target.classList.contains('inc')) {
+            input.value = parseInt(input.value) + 1;
+          } else {
+            input.value = Math.max(1, parseInt(input.value) - 1);
+          }
+          
+          updateSubtotal(variant);
           updateSummary();
         });
       });
 
       // Quantity input validation
       document.querySelectorAll('.qty-input').forEach(input => {
-        input.addEventListener('input', () => {
-          const productId = input.dataset.productId;
-          if (parseInt(input.value) < 1 || isNaN(input.value)) input.value = 1;
-          updateSubtotal(productId);
-          updateSummary();
-        });
-      });
-
-      // Variant checkboxes
-      document.querySelectorAll('.variant-item input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
+        input.addEventListener('input', (e) => {
+          const variant = e.target.dataset.variant;
+          if (parseInt(e.target.value) < 1 || isNaN(e.target.value)) {
+            e.target.value = 1;
+          }
+          updateSubtotal(variant);
           updateSummary();
         });
       });
     }
 
-    // ===== UPDATE SUBTOTAL PER PRODUCT =====
-    function updateSubtotal(productId) {
-      const qty = parseInt(document.querySelector(`.qty-input[data-product-id="${productId}"]`).value);
-      const checkedVariants = document.querySelectorAll(`.variant-item input[data-product-id="${productId}"]:checked`);
-      const price = parseInt(checkedVariants[0]?.dataset.price || 0);
-      const subtotal = qty * price * checkedVariants.length;
+    function updateSubtotal(variant) {
+      const checkbox = document.querySelector(`#variants-container .variant-checkbox[data-variant="${variant}"]`);
+      const qty = parseInt(document.querySelector(`#variants-container .qty-input[data-variant="${variant}"]`).value) || 0;
+      const subtotalEl = document.querySelector(`.variant-subtotal[data-variant="${variant}"]`);
       
-      document.getElementById(`subtotal-${productId}`).textContent = `Subtotal: ${formatIDR(subtotal)}`;
+      if (checkbox.checked) {
+        subtotalEl.textContent = formatIDR(CONFIG.PRICE * qty);
+      } else {
+        subtotalEl.textContent = 'Rp 0';
+      }
     }
 
-    // ===== UPDATE SUMMARY =====
+    function formatIDR(n) {
+      return `Rp ${n.toLocaleString('id-ID')}`;
+    }
+
     function updateSummary() {
       const items = [];
       let total = 0;
 
-      PRODUCTS.forEach(product => {
-        const qty = parseInt(document.querySelector(`.qty-input[data-product-id="${product.id}"]`).value);
-        const checkedVariants = document.querySelectorAll(`.variant-item input[data-product-id="${product.id}"]:checked`);
-        
-        checkedVariants.forEach(variant => {
-          const variantName = variant.dataset.variant;
-          const itemTotal = product.price * qty;
-          total += itemTotal;
-          
-          items.push({
-            text: `${product.name} - ${variantName} <strong>x${qty}</strong>`,
-            price: formatIDR(itemTotal)
-          });
+      document.querySelectorAll('#variants-container .variant-checkbox:checked').forEach(checkbox => {
+        const variant = checkbox.dataset.variant;
+        const qty = parseInt(document.querySelector(`#variants-container .qty-input[data-variant="${variant}"]`).value);
+        const itemTotal = CONFIG.PRICE * qty;
+        total += itemTotal;
+
+        items.push({
+          text: `${variant} <strong>x${qty}</strong>`,
+          price: formatIDR(itemTotal)
         });
       });
 
-      // Render summary
       if (items.length > 0) {
         summarySection.style.display = 'block';
         summaryItems.innerHTML = items.map(item => `
@@ -521,51 +502,41 @@
           </div>
         `).join('');
         grandTotal.textContent = formatIDR(total);
+        checkoutBtn.disabled = false;
       } else {
         summarySection.style.display = 'none';
+        checkoutBtn.disabled = true;
       }
     }
 
     // ===== CHECKOUT =====
     checkoutBtn.addEventListener('click', () => {
       const orders = [];
-      let grandTotalAmount = 0;
+      let totalAmount = 0;
 
-      PRODUCTS.forEach(product => {
-        const qty = parseInt(document.querySelector(`.qty-input[data-product-id="${product.id}"]`).value);
-        const checkedVariants = document.querySelectorAll(`.variant-item input[data-product-id="${product.id}"]:checked`);
-        
-        checkedVariants.forEach(variant => {
-          const variantName = variant.dataset.variant;
-          const itemTotal = product.price * qty;
-          grandTotalAmount += itemTotal;
-          orders.push(`${product.name} - ${variantName} (x${qty}) = ${formatIDR(itemTotal)}`);
-        });
+      document.querySelectorAll('#variants-container .variant-checkbox:checked').forEach(checkbox => {
+        const variant = checkbox.dataset.variant;
+        const qty = parseInt(document.querySelector(`#variants-container .qty-input[data-variant="${variant}"]`).value);
+        const itemTotal = CONFIG.PRICE * qty;
+        totalAmount += itemTotal;
+        orders.push(`${variant} (x${qty}) = ${formatIDR(itemTotal)}`);
       });
-
-      if (orders.length === 0) {
-        alert('⚠️ Silakan pilih minimal satu varian produk!');
-        return;
-      }
 
       const message = `Halo 3SmoothMoon! 🥤
 
-Saya ingin memesan:
+Saya ingin memesan Smoothie:
 ${orders.map(item => `• ${item}`).join('\n')}
 
-*Total Keseluruhan: ${formatIDR(grandTotalAmount)}*
+*Total: ${formatIDR(totalAmount)}*
 
 Silakan konfirmasi ketersediaan dan estimasi waktu siapnya. Terima kasih!`;
 
-      // GANTI nomor WhatsApp berikut dengan nomor bisnis Anda
-      const phone = '6281919000164';
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      
+      const url = `https://wa.me/${CONFIG.PHONE}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     });
 
     // ===== INITIALIZE =====
-    renderProducts();
+    renderVariants();
     updateSummary();
   </script>
 </body>
